@@ -7,9 +7,7 @@ import net.solarnetwork.io.modbus.rtu.jsc.JscSerialPortProvider;
 import net.solarnetwork.io.modbus.rtu.netty.NettyRtuModbusClientConfig;
 import net.solarnetwork.io.modbus.rtu.netty.RtuNettyModbusClient;
 import net.solarnetwork.io.modbus.serial.BasicSerialParameters;
-import net.solarnetwork.io.modbus.serial.SerialParity;
 import net.solarnetwork.io.modbus.serial.SerialStopBits;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.concurrent.ExecutionException;
@@ -41,7 +39,7 @@ public class TestController {
             client.start().get();
 
             RegistersModbusMessage req = RegistersModbusMessage.readRegistersRequest(
-                    ModbusBlockType.Holding, 1, 1, 2);
+                    ModbusBlockType.Holding, 1, 1, 12);
             RegistersModbusMessage res = client.send(req).unwrap(RegistersModbusMessage.class);
 
             System.out.println(res);
@@ -52,6 +50,24 @@ public class TestController {
             for ( int i = 0, len = data.length; i < len; i++ ) {
                 System.out.printf("%d: 0x%04X\n", len + i, data[i]);
             }
+
+            int[] a1=new int[]{data[0],data[1]};
+            int[] a2=new int[]{data[2],data[3]};
+            int[] a3=new int[]{data[4],data[5]};
+            int[] a4=new int[]{data[6],data[7]};
+            int[] a5=new int[]{data[8],data[9]};
+            int[] a6=new int[]{data[10],data[11]};
+
+            System.out.println("************************************************************************************");
+            System.out.println(uz.maniac4j.storm.modbus.client.ModbusClient.ConvertRegistersToFloat(a1, uz.maniac4j.storm.modbus.client.ModbusClient.RegisterOrder.HighLow));
+            System.out.println(uz.maniac4j.storm.modbus.client.ModbusClient.ConvertRegistersToFloat(a2, uz.maniac4j.storm.modbus.client.ModbusClient.RegisterOrder.HighLow));
+            System.out.println(uz.maniac4j.storm.modbus.client.ModbusClient.ConvertRegistersToFloat(a3, uz.maniac4j.storm.modbus.client.ModbusClient.RegisterOrder.HighLow));
+            System.out.println(uz.maniac4j.storm.modbus.client.ModbusClient.ConvertRegistersToFloat(a4, uz.maniac4j.storm.modbus.client.ModbusClient.RegisterOrder.HighLow));
+            System.out.println(uz.maniac4j.storm.modbus.client.ModbusClient.ConvertRegistersToFloat(a5, uz.maniac4j.storm.modbus.client.ModbusClient.RegisterOrder.HighLow));
+            System.out.println(uz.maniac4j.storm.modbus.client.ModbusClient.ConvertRegistersToFloat(a6, uz.maniac4j.storm.modbus.client.ModbusClient.RegisterOrder.HighLow));
+            System.out.println("************************************************************************************");
+
+
         } catch (ExecutionException e) {
             throw new RuntimeException(e);
         } catch (InterruptedException e) {
