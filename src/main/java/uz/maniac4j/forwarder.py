@@ -12,7 +12,7 @@ def run_serial_forwarder():
     store3 = RemoteSlaveContext(client, slave=3)
     context = ModbusServerContext(slaves={1: store, 3: store3}, single=False)
 
-    StartServer(context=context, address=("0.0.0.0", 504))
+    StartServer(context=context, address=("0.0.0.0", 502))
 
 
 if __name__ == "__main__":
