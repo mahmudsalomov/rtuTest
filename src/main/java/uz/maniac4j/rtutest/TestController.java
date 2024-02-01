@@ -54,12 +54,12 @@ public class TestController {
                 System.out.printf("%d: 0x%04X\n", len + i, data[i]);
             }
 
-            int[] a1=new int[]{data[0],data[1]};
-            int[] a2=new int[]{data[2],data[3]};
-            int[] a3=new int[]{data[4],data[5]};
-            int[] a4=new int[]{data[6],data[7]};
-            int[] a5=new int[]{data[8],data[9]};
-            int[] a6=new int[]{data[10],data[11]};
+            int[] a1=new int[]{data[1],data[2]};
+            int[] a2=new int[]{data[3],data[4]};
+            int[] a3=new int[]{data[5],data[6]};
+            int[] a4=new int[]{data[7],data[8]};
+            int[] a5=new int[]{data[9],data[10]};
+            int[] a6=new int[]{data[11],data[12]};
 
             System.out.println("SLAVE = "+unit);
             System.out.println("************************************************************************************");

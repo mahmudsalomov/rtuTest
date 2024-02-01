@@ -16,7 +16,7 @@ tasklist /fi "IMAGENAME eq python3.12.exe" | find /i "python3.12.exe" >nul ||(
 )
     if "%script_started%"=="0" (
         echo Roclink is not running. Starting Python script.
-        start "" "%python_script_path%" || echo Error: Failed to start Python script
+        start /B "" "%python_script_path%" || echo Error: Failed to start Python script
         set "script_started=1"
     )
 )
