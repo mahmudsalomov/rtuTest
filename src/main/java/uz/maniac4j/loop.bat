@@ -1,17 +1,17 @@
 @echo off
 set "roclink_process=Roclink.exe"
-set "python_script_path=D:\test.py"
+set "python_script_path=C:\forwarder\forwarder.py"
 set "script_started=0"
 
 :loop
 tasklist /fi "IMAGENAME eq %roclink_process%" | find /i "%roclink_process%" >nul && (
-    tasklist /fi "IMAGENAME eq python.exe" | find /i "python.exe" >nul &&(
+    tasklist /fi "IMAGENAME eq python3.12.exe" | find /i "python3.12.exe" >nul &&(
 	echo Roclink is running. Stopping Python script.
-	taskkill /f /im python.exe || echo Error: Failed to stop Python script
+	taskkill /f /im python3.12.exe || echo Error: Failed to stop Python script
     )
     set "script_started=0"
 ) || (
-tasklist /fi "IMAGENAME eq python.exe" | find /i "python.exe" >nul ||(
+tasklist /fi "IMAGENAME eq python3.12.exe" | find /i "python3.12.exe" >nul ||(
 	set "script_started=0"
 )
     if "%script_started%"=="0" (
